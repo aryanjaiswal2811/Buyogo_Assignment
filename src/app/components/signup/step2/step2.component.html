@@ -1,0 +1,47 @@
+<section class="container">
+    <div class="login-container">
+        <div class="circle circle-one"></div>
+        <div class="form-container">
+            <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png"
+                alt="illustration" class="illustration" />
+            <h1 class="opacity">SIGN UP</h1>
+            <form [formGroup]="step2Form" (ngSubmit)="next()">
+                <div>
+                    <input formControlName="organization" placeholder="Organization Name"
+                        (blur)="validateOrganization()" />
+                    <div *ngIf="errors.organization">{{ errors.organization }}</div>
+                </div>
+                <div>
+                    <select formControlName="designation">
+                        <option value="" disabled>Select Designation</option>
+                        <option value="Developer">Developer</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Tester">Tester</option>
+                    </select>
+                </div>
+                <div>
+                    <input formControlName="birthDate" type="date" placeholder="Birth Date" />
+                </div>
+                <div>
+                    <input formControlName="city" placeholder="City" />
+                </div>
+                <div>
+                    <input formControlName="pincode" placeholder="Pincode" />
+                    <div *ngIf="step2Form.get('pincode')?.invalid && step2Form.get('pincode')?.touched"
+                        class="text-danger">
+                        <div *ngIf="step2Form.get('pincode')?.errors?.['required']">Pincode is required.</div>
+                        <div *ngIf="step2Form.get('pincode')?.errors?.['pattern']">Pincode must be 6 digits.</div>
+                    </div>
+                </div>
+                <button type="submit">SUBMIT</button>
+            </form>
+            <div class="register-forget opacity">
+                <div *ngIf="successMessage" class="alert alert-success">
+                    {{ successMessage }}
+                </div>
+            </div>
+        </div>
+        <div class="circle circle-two"></div>
+    </div>
+    <div class="theme-btn-container"></div>
+</section>

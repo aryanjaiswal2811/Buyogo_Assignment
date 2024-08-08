@@ -1,0 +1,45 @@
+<section class="container">
+    <div class="login-container">
+        <div class="circle circle-one"></div>
+        <div class="form-container">
+            <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png"
+                alt="illustration" class="illustration" />
+            <h1 class="opacity">SIGN UP</h1>
+            <form [formGroup]="signupForm" (ngSubmit)="continueToStep2()">
+                <div>
+
+                    <input formControlName="name" placeholder="NAME" />
+                    <div *ngIf="signupForm.get('name')?.invalid && (signupForm.get('name')?.touched || signupForm.get('name')?.dirty)"
+                        class="text-danger">
+                        Name is required.
+                    </div>
+                </div>
+                <div>
+
+                    <input formControlName="emailOrPhone" placeholder="EMAIL/PHONE" />
+                    <div *ngIf="signupForm.get('emailOrPhone')?.invalid && (signupForm.get('emailOrPhone')?.touched || signupForm.get('emailOrPhone')?.dirty)"
+                        class="text-danger">
+                        <div *ngIf="signupForm.get('emailOrPhone')?.errors?.['required']">Email or Phone is required.
+                        </div>
+                        <div *ngIf="signupForm.get('emailOrPhone')?.errors?.['email']">Please enter a valid email.</div>
+                    </div>
+                </div>
+                <div>
+                    <input formControlName="createPassword" type="password" placeholder="CREATE PASSWORD" />
+                    <div *ngIf="signupForm.get('createPassword')?.invalid && (signupForm.get('createPassword')?.touched || signupForm.get('createPassword')?.dirty)"
+                        class="text-danger">
+                        <div *ngIf="signupForm.get('createPassword')?.errors?.['required']" style="margin-bottom: 10px;">Password is required.</div>
+                        <div *ngIf="signupForm.get('createPassword')?.errors?.['minlength']" style="margin-bottom: 10px;">Password must be at least 6
+                            characters.</div>
+                    </div>
+                </div>
+                <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+                <button type="submit">Continue to Step 2</button>
+                <button (click)="goToLogin()" class="">Back to Login</button>
+            </form>
+            
+        </div>
+        <div class="circle circle-two"></div>
+    </div>
+    <div class="theme-btn-container"></div>
+</section>
